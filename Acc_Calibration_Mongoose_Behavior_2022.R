@@ -18,24 +18,25 @@ library(magrittr)
 
 #You will need X11 to operate on a mac - download at https://www.xquartz.org/
 #rgl does not work with monterey OS system 
-## Calibration of the Technosmart Europe AGM magnetometer by fitting an ellipsoid to a set of calibration data points and transforming it into a sphere centered in zero
+## This code provides example of Calibration of the Technosmart Europe AGM magnetometer by fitting an ellipsoid to a set of calibration data points 
+###and transforming it into a sphere centered in zero
 
-## Theoretical aspects of this script are based in ST Microelectronics's algorithm by Andrea Vitali, which you may find at:
-## https://www.st.com/content/ccc/resource/technical/document/design_tip/group0/a2/98/f5/d4/9c/48/4a/d1/DM00286302/files/DM00286302.pdf/jcr:content/translations/en.DM00286302.pdf
+##Theoretical aspects of this script are based in ST Microelectronics's algorithm by Andrea Vitali, which you may find at:
+###https://www.st.com/content/ccc/resource/technical/document/design_tip/group0/a2/98/f5/d4/9c/48/4a/d1/DM00286302/files/DM00286302.pdf/jcr:content/translations/en.DM00286302.pdf
 
-## Calibration movement manual for TechnoSmart Model Accelerometer can be found at: http://www.technosmart.eu/gallery.php
+#Calibration movement manual for TechnoSmart Model Accelerometer can be found at: http://www.technosmart.eu/gallery.php
 
-## To midigate formatting errors, Open the calbration and movement CSV (i.e., data downloaded from Accelerometer) in a reader first
-## Delte any non-numeric rows 
+#To midigate formatting errors, Open the calbration and movement CSV (i.e., data downloaded from Accelerometer) in a reader first
+##Delte any non-numeric rows 
 
-## Now you are ready to read your CSV file and source the calibration functions text file
+#Now you are ready to read your CSV file and source the calibration functions text file
 
 source("C:/Users/paige/Desktop/Data/Accele_Data_AlexLab/AGM_functions.txt") 
 #Set source to your working directory (where data and AGM_functions text file are)
 calibration.data = read.csv("calibration.csv", header=T) 
 
-# Plotting the raw data: the three axes should produce an ellipsoid-like shape
-#Turning on/off the logger will produce outlying values which should be excluded from analysis. 
+#Plotting the raw data: the three axes should produce an ellipsoid-like shape
+##Turning on/off the logger will produce outlying values which should be excluded from analysis. 
 
 #Plot the calibration data 
 doubleplot(calibration.data$Mx,calibration.data$My,calibration.data$Mz,"Raw calibration data")
